@@ -1,2 +1,15 @@
 /* Styles go here */
+button {
+	width: 100px;
+	height: 40px;
+	background-color: aquamarine;
+	border: 2px solid black;
+}
 
+button:hover {
+	background-color: aqua;
+}
+
+button:active {
+	transform: translateY(4px);
+}
