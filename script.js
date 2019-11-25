@@ -1,25 +1,43 @@
 let todoList = {
-	todos: [ 'item1', 'item2', 'item3' ], //Creating an Array
+	todos: [], //Creating an Array
 	displayTodos: function() {
-		//Adding a function to show the Display of the Array
-		console.log('My Todos', this.todos);
+		if (this.todos.length === 0) {
+			console.log('Your todo list is empty!');
+		} else {
+			console.log('My Todos:');
+			for (let i = 0; i < this.todos.length; i++) {
+				if (this.todos[i].completed === true) {
+					console.log('(x)', this.todos[i].todoText);
+				} else {
+					console.log('( )', this.todos[i].todoText);
+				}
+			}
+		}
 	},
 
-	addTodo: function(todo) {
-		//Function to add a new item to the Array
-		this.todos.push(todo); //"this" to call the todos from the function itself
+	addTodo: function(todoText) {
+		this.todos.push({
+			todoText: todoText,
+			completed: false
+		});
 		this.displayTodos();
 	},
 
-	changeTodo: function(position, newValue) {
+	changeTodo: function(position, todoText) {
 		//Function to change an item in the Array List
-		this.todos[position] = newValue;
+		this.todos[position].todoText = todoText;
 		this.displayTodos();
 	},
 
 	deleteTodo: function(position) {
 		//Function to delete an item in the Array List
 		this.todos.splice(position, 1);
+		this.displayTodos();
+	},
+
+	toggleCompleted: function(position) {
+		let todo = this.todos[position];
+		todo.completed = !todo.completed;
 		this.displayTodos();
 	}
 };
